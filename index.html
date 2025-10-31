@@ -189,17 +189,6 @@
       position: relative;
       overflow: hidden;
     }
-
-    .project-card-bg::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-      opacity: 0.9;
-    }
   </style>
 </head>
 <body class="theme-transition">
@@ -304,7 +293,6 @@
        </div>
        <div class="flex justify-center">
         <div class="w-80 h-80 rounded-2xl theme-transition flex items-center justify-center text-8xl gradient-bg relative overflow-hidden" id="avatar">
-          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 opacity-90"></div>
           <i class="fas fa-laptop-code text-white relative z-10 theme-icon-white"></i>
         </div>
        </div>
