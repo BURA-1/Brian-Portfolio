@@ -189,6 +189,93 @@
       position: relative;
       overflow: hidden;
     }
+
+    /* Color picker styles */
+    .color-picker-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .color-picker-button {
+      background-color: var(--surface-color);
+      border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+      color: var(--text-color);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .color-picker-button:hover {
+      border-color: var(--accent-color);
+    }
+
+    .color-picker-popup {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 8px;
+      background: var(--surface-color);
+      border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 1000;
+      min-width: 200px;
+      backdrop-filter: blur(10px);
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .color-option {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+      border-color: var(--text-color);
+    }
+
+    .color-option.active {
+      border-color: var(--text-color);
+      transform: scale(1.1);
+    }
+
+    .preset-themes {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(var(--accent-color-rgb), 0.2);
+    }
+
+    .preset-theme {
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .preset-theme:hover {
+      background-color: rgba(var(--accent-color-rgb), 0.1);
+    }
+
+    .preset-theme.active {
+      background-color: rgba(var(--accent-color-rgb), 0.2);
+      color: var(--accent-color);
+    }
   </style>
 </head>
 <body class="theme-transition">
@@ -212,15 +299,70 @@
          <i class="fas fa-envelope mr-2 theme-icon"></i>Contact
        </a>
      </div>
-     <div class="relative">
-       <select class="theme-dropdown" id="theme-selector">
-         <option value="normal">Normal</option>
-         <option value="dark">Dark</option>
-         <option value="nature">Nature</option>
-         <option value="sunset">Sunset</option>
-         <option value="ocean">Ocean</option>
-       </select>
-     </div>
+     <div class="color-picker-container">
+        <button class="color-picker-button theme-transition" id="theme-button">
+          <i class="fas fa-palette theme-icon"></i>
+          <span>Theme</span>
+        </button>
+        <div class="color-picker-popup theme-transition glass-effect" id="color-picker" style="display: none;">
+          <div class="color-grid">
+            <!-- Red colors -->
+            <div class="color-option" style="background-color: #ef4444;" data-color="#ef4444" data-secondary="#f87171"></div>
+            <div class="color-option" style="background-color: #dc2626;" data-color="#dc2626" data-secondary="#ef4444"></div>
+            <div class="color-option" style="background-color: #f97316;" data-color="#f97316" data-secondary="#fb923c"></div>
+            <div class="color-option" style="background-color: #ea580c;" data-color="#ea580c" data-secondary="#f97316"></div>
+            <div class="color-option" style="background-color: #d97706;" data-color="#d97706" data-secondary="#f59e0b"></div>
+            
+            <!-- Green colors -->
+            <div class="color-option" style="background-color: #10b981;" data-color="#10b981" data-secondary="#34d399"></div>
+            <div class="color-option" style="background-color: #059669;" data-color="#059669" data-secondary="#10b981"></div>
+            <div class="color-option" style="background-color: #65a30d;" data-color="#65a30d" data-secondary="#84cc16"></div>
+            <div class="color-option" style="background-color: #4d7c0f;" data-color="#4d7c0f" data-secondary="#65a30d"></div>
+            <div class="color-option" style="background-color: #15803d;" data-color="#15803d" data-secondary="#16a34a"></div>
+            
+            <!-- Blue colors -->
+            <div class="color-option" style="background-color: #3b82f6;" data-color="#3b82f6" data-secondary="#60a5fa"></div>
+            <div class="color-option" style="background-color: #2563eb;" data-color="#2563eb" data-secondary="#3b82f6"></div>
+            <div class="color-option" style="background-color: #6366f1;" data-color="#6366f1" data-secondary="#8b5cf6"></div>
+            <div class="color-option" style="background-color: #4f46e5;" data-color="#4f46e5" data-secondary="#6366f1"></div>
+            <div class="color-option" style="background-color: #1d4ed8;" data-color="#1d4ed8" data-secondary="#2563eb"></div>
+            
+            <!-- Purple colors -->
+            <div class="color-option" style="background-color: #8b5cf6;" data-color="#8b5cf6" data-secondary="#a855f7"></div>
+            <div class="color-option" style="background-color: #7c3aed;" data-color="#7c3aed" data-secondary="#8b5cf6"></div>
+            <div class="color-option" style="background-color: #a855f7;" data-color="#a855f7" data-secondary="#c084fc"></div>
+            <div class="color-option" style="background-color: #9333ea;" data-color="#9333ea" data-secondary="#a855f7"></div>
+            <div class="color-option" style="background-color: #7e22ce;" data-color="#7e22ce" data-secondary="#9333ea"></div>
+            
+            <!-- Pink colors -->
+            <div class="color-option" style="background-color: #ec4899;" data-color="#ec4899" data-secondary="#f472b6"></div>
+            <div class="color-option" style="background-color: #db2777;" data-color="#db2777" data-secondary="#ec4899"></div>
+            <div class="color-option" style="background-color: #be185d;" data-color="#be185d" data-secondary="#db2777"></div>
+            <div class="color-option" style="background-color: #be123c;" data-color="#be123c" data-secondary="#e11d48"></div>
+            
+            <!-- Teal colors -->
+            <div class="color-option" style="background-color: #14b8a6;" data-color="#14b8a6" data-secondary="#2dd4bf"></div>
+            <div class="color-option" style="background-color: #0d9488;" data-color="#0d9488" data-secondary="#14b8a6"></div>
+            <div class="color-option" style="background-color: #0f766e;" data-color="#0f766e" data-secondary="#0d9488"></div>
+            
+            <!-- Cyan colors -->
+            <div class="color-option" style="background-color: #06b6d4;" data-color="#06b6d4" data-secondary="#22d3ee"></div>
+            <div class="color-option" style="background-color: #0891b2;" data-color="#0891b2" data-secondary="#06b6d4"></div>
+            <div class="color-option" style="background-color: #0e7490;" data-color="#0e7490" data-secondary="#0891b2"></div>
+            
+            <!-- Yellow colors -->
+            <div class="color-option" style="background-color: #eab308;" data-color="#eab308" data-secondary="#facc15"></div>
+            <div class="color-option" style="background-color: #ca8a04;" data-color="#ca8a04" data-secondary="#eab308"></div>
+            
+            <!-- Emerald colors -->
+            <div class="color-option" style="background-color: #10b981;" data-color="#10b981" data-secondary="#34d399"></div>
+            <div class="color-option" style="background-color: #059669;" data-color="#059669" data-secondary="#10b981"></div>
+          </div>
+          <div class="preset-themes">
+            <div class="preset-theme theme-transition active" data-theme="normal">Default Theme</div>
+          </div>
+        </div>
+      </div>
     </div>
    </nav>
   </header>
@@ -419,9 +561,9 @@
            <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">SQL</span>
            <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Power BI</span>
          </div>
-         <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
+         <a href="https://bura-1.github.io/TechWizSoln/" target="_blank" class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center no-underline">
            <i class="fas fa-external-link-alt mr-2 theme-icon-white"></i>View Project
-         </button>
+         </a>
         </div>
        </div>
        <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-2">
@@ -473,7 +615,7 @@
         <i class="fas fa-envelope mr-4 theme-icon"></i>Contact Us On
       </h2>
       <p class="text-xl mb-12 opacity-80">Let's discuss your next project or collaboration opportunity.</p>
-      <div class="grid md:grid-cols-4 gap-6 mb-12">
+      <div class="grid md:grid-cols-5 gap-6 mb-12">
        <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-1">
         <div class="text-4xl mb-4 gradient-text">
          <i class="fas fa-envelope theme-icon"></i>
@@ -502,6 +644,13 @@
         <h3 class="text-lg font-semibold mb-2">GitHub</h3>
         <p class="opacity-80 text-sm">github.com/BURA-1</p>
        </div>
+       <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-5">
+        <div class="text-4xl mb-4 gradient-text">
+         <i class="fas fa-globe theme-icon"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Website</h3>
+        <p class="opacity-80 text-sm">TechWizSoln</p>
+       </div>
       </div>
       <button class="px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 theme-transition gradient-bg text-white flex items-center justify-center mx-auto" id="contact-cta">
         <i class="fas fa-paper-plane mr-2 theme-icon-white"></i>Start a Conversation
@@ -523,34 +672,6 @@
         text_color: '#e2e8f0',
         accent_color: '#6366f1',
         secondary_color: '#8b5cf6'
-      },
-      dark: {
-        background_color: '#0f172a',
-        surface_color: '#1e293b',
-        text_color: '#f1f5f9',
-        accent_color: '#3b82f6',
-        secondary_color: '#8b5cf6'
-      },
-      nature: {
-        background_color: '#0f1f15',
-        surface_color: '#1a3224',
-        text_color: '#d1fae5',
-        accent_color: '#10b981',
-        secondary_color: '#34d399'
-      },
-      sunset: {
-        background_color: '#1f0f0f',
-        surface_color: '#321a1a',
-        text_color: '#fecaca',
-        accent_color: '#ef4444',
-        secondary_color: '#f97316'
-      },
-      ocean: {
-        background_color: '#0f1a1f',
-        surface_color: '#1a2d32',
-        text_color: '#bae6fd',
-        accent_color: '#06b6d4',
-        secondary_color: '#0ea5e9'
       }
     };
 
@@ -588,12 +709,40 @@
         document.documentElement.style.setProperty('--surface-color-rgb', `${surfaceRgb.r}, ${surfaceRgb.g}, ${surfaceRgb.b}`);
       }
 
-      // Update theme dropdown
-      const themeDropdown = document.getElementById('theme-selector');
-      themeDropdown.value = themeName;
-
       // Update all icons
       updateAllIcons(theme);
+      
+      // Update active states in color picker
+      updateColorPickerActiveStates(themeName);
+    }
+
+    // Function to apply custom color
+    function applyCustomColor(accentColor, secondaryColor) {
+      // Update CSS custom properties with custom colors
+      document.documentElement.style.setProperty('--accent-color', accentColor);
+      document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+      
+      // Convert hex colors to RGB for rgba usage
+      const accentRgb = hexToRgb(accentColor);
+      const surfaceRgb = hexToRgb('#1a1a2e'); // Keep surface color consistent
+      
+      if (accentRgb) {
+        document.documentElement.style.setProperty('--accent-color-rgb', `${accentRgb.r}, ${accentRgb.g}, ${accentRgb.b}`);
+      }
+      
+      if (surfaceRgb) {
+        document.documentElement.style.setProperty('--surface-color-rgb', `${surfaceRgb.r}, ${surfaceRgb.g}, ${surfaceRgb.b}`);
+      }
+
+      // Update all icons
+      const theme = {
+        accent_color: accentColor,
+        secondary_color: secondaryColor
+      };
+      updateAllIcons(theme);
+      
+      // Update active states in color picker
+      updateColorPickerActiveStates('custom');
     }
 
     // Function to update all icons with theme colors
@@ -641,12 +790,68 @@
       }
     }
 
+    // Function to update color picker active states
+    function updateColorPickerActiveStates(activeTheme) {
+      // Remove active class from all color options and preset themes
+      document.querySelectorAll('.color-option').forEach(option => {
+        option.classList.remove('active');
+      });
+      document.querySelectorAll('.preset-theme').forEach(theme => {
+        theme.classList.remove('active');
+      });
+      
+      // Add active class to current theme
+      if (activeTheme !== 'custom') {
+        const activePreset = document.querySelector(`.preset-theme[data-theme="${activeTheme}"]`);
+        if (activePreset) {
+          activePreset.classList.add('active');
+        }
+      }
+    }
+
     // Theme selector event listeners
     document.addEventListener('DOMContentLoaded', function() {
-      const themeDropdown = document.getElementById('theme-selector');
-      themeDropdown.addEventListener('change', function() {
-        const themeName = this.value;
-        applyTheme(themeName);
+      const themeButton = document.getElementById('theme-button');
+      const colorPicker = document.getElementById('color-picker');
+
+      // Toggle color picker
+      themeButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        colorPicker.style.display = colorPicker.style.display === 'none' ? 'block' : 'none';
+      });
+
+      // Close color picker when clicking outside
+      document.addEventListener('click', function() {
+        colorPicker.style.display = 'none';
+      });
+
+      // Prevent color picker from closing when clicking inside
+      colorPicker.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+
+      // Color option click handlers
+      document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', function() {
+          const accentColor = this.getAttribute('data-color');
+          const secondaryColor = this.getAttribute('data-secondary');
+          applyCustomColor(accentColor, secondaryColor);
+          colorPicker.style.display = 'none';
+        });
+      });
+
+      // Preset theme click handlers
+      document.querySelectorAll('.preset-theme').forEach(theme => {
+        theme.addEventListener('click', function() {
+          const themeName = this.getAttribute('data-theme');
+          applyTheme(themeName);
+          colorPicker.style.display = 'none';
+        });
+      });
+
+      // Website contact card click handler
+      document.getElementById('contact-card-5').addEventListener('click', function() {
+        window.open('https://bura-1.github.io/TechWizSoln/', '_blank');
       });
 
       // Apply default theme
@@ -681,7 +886,7 @@
         this.style.backgroundColor = '#10b981';
         setTimeout(() => {
           this.innerHTML = originalText;
-          applyTheme(document.getElementById('theme-selector').value);
+          applyTheme('normal');
         }, 2000);
       });
 
