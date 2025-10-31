@@ -169,27 +169,58 @@
       background-color: var(--accent-color);
       color: white;
     }
+
+    /* Theme-aware icons */
+    .theme-icon {
+      color: var(--accent-color);
+    }
+
+    .theme-icon-secondary {
+      color: var(--secondary-color);
+    }
+
+    .theme-icon-white {
+      color: white;
+    }
+
+    /* Project card backgrounds */
+    .project-card-bg {
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body class="theme-transition">
   <header class="fixed top-0 w-full z-50 backdrop-blur-md border-b theme-transition glass-effect" id="header">
    <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
     <div class="text-2xl font-bold gradient-text flex items-center" id="nav-name">
-      <i class="fas fa-code mr-2"></i>Brian Onsare
+      <i class="fas fa-code mr-2 theme-icon"></i>Brian Onsare
     </div>
     <div class="flex items-center space-x-6">
      <div class="hidden md:flex space-x-6">
        <a href="#about" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-about">
-         <i class="fas fa-user mr-2" style="color: var(--accent-color);"></i>About
+         <i class="fas fa-user mr-2 theme-icon"></i>About
        </a>
        <a href="#skills" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-skills">
-         <i class="fas fa-cog mr-2" style="color: var(--accent-color);"></i>Skills
+         <i class="fas fa-cog mr-2 theme-icon"></i>Skills
        </a>
        <a href="#projects" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-projects">
-         <i class="fas fa-project-diagram mr-2" style="color: var(--accent-color);"></i>Projects
+         <i class="fas fa-project-diagram mr-2 theme-icon"></i>Projects
        </a>
        <a href="#contact" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-contact">
-         <i class="fas fa-envelope mr-2" style="color: var(--accent-color);"></i>Contact
+         <i class="fas fa-envelope mr-2 theme-icon"></i>Contact
        </a>
      </div>
      <div class="relative">
@@ -216,7 +247,7 @@
       <div class="max-w-4xl mx-auto text-center relative z-10">
         <div class="animate-fade-in">
           <div class="inline-flex items-center justify-center w-20 h-20 rounded-full gradient-bg mb-8 pulse-animation">
-            <i class="fas fa-laptop-code text-white text-2xl"></i>
+            <i class="fas fa-laptop-code text-white text-2xl theme-icon-white"></i>
           </div>
           <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text" id="hero-name">Brian Onsare</h1>
           <h2 class="text-2xl md:text-3xl mb-8 theme-transition flex items-center justify-center" id="hero-title">
@@ -230,10 +261,10 @@
           <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-80 theme-transition" id="hero-bio">Crafting robust, intelligent, and scalable solutions at the intersection of code and business logic. Specializing in backend development, data automation, and full-stack engineering.</p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <button class="px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 theme-transition gradient-bg text-white flex items-center justify-center" id="cta-projects">
-              <i class="fas fa-rocket mr-2"></i>View My Work
+              <i class="fas fa-rocket mr-2 theme-icon-white"></i>View My Work
             </button>
             <button class="px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 theme-transition contact-btn border flex items-center justify-center" id="cta-contact">
-              <i class="fas fa-paper-plane mr-2"></i>Contact Us On
+              <i class="fas fa-paper-plane mr-2 theme-icon"></i>Contact Us On
             </button>
           </div>
         </div>
@@ -241,7 +272,7 @@
       
       <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
         <div class="flex flex-col items-center">
-          <span class="text-sm opacity-70 mb-2" style="color: var(--accent-color);">Scroll to explore</span>
+          <span class="text-sm opacity-70 mb-2 theme-icon">Scroll to explore</span>
           <div class="w-6 h-10 scroll-indicator border-2 rounded-full flex justify-center">
             <div class="w-1 h-3 scroll-indicator-dot rounded-full mt-2 floating"></div>
           </div>
@@ -253,7 +284,7 @@
     <section class="py-20 px-6 theme-transition" id="about">
      <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-16 gradient-text flex items-center justify-center">
-        <i class="fas fa-user mr-4"></i>About Me
+        <i class="fas fa-user mr-4 theme-icon"></i>About Me
       </h2>
       <div class="grid md:grid-cols-2 gap-12 items-center">
        <div>
@@ -261,20 +292,20 @@
         <p class="text-lg mb-6 opacity-90 theme-transition">I combine strong technical expertise with business acumen to bridge the gap between technology and end-users, delivering tailored software solutions that address real-world challenges.</p>
         <div class="flex flex-wrap gap-3">
           <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition glass-effect flex items-center">
-            <i class="fas fa-code mr-2" style="color: var(--accent-color);"></i>Backend Development
+            <i class="fas fa-code mr-2 theme-icon"></i>Backend Development
           </span>
           <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition glass-effect flex items-center">
-            <i class="fas fa-database mr-2" style="color: var(--accent-color);"></i>Data Automation
+            <i class="fas fa-database mr-2 theme-icon"></i>Data Automation
           </span>
           <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition glass-effect flex items-center">
-            <i class="fas fa-cogs mr-2" style="color: var(--accent-color);"></i>ERP Implementation
+            <i class="fas fa-cogs mr-2 theme-icon"></i>ERP Implementation
           </span>
         </div>
        </div>
        <div class="flex justify-center">
         <div class="w-80 h-80 rounded-2xl theme-transition flex items-center justify-center text-8xl gradient-bg relative overflow-hidden" id="avatar">
           <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 opacity-90"></div>
-          <i class="fas fa-laptop-code text-white relative z-10"></i>
+          <i class="fas fa-laptop-code text-white relative z-10 theme-icon-white"></i>
         </div>
        </div>
       </div>
@@ -287,13 +318,13 @@
     <section class="py-20 px-6 theme-transition" id="skills">
      <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-16 gradient-text flex items-center justify-center">
-        <i class="fas fa-cogs mr-4"></i>Technical Skills
+        <i class="fas fa-cogs mr-4 theme-icon"></i>Technical Skills
       </h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
        <div class="p-6 rounded-2xl card-hover theme-transition glass-effect" id="skill-card-1">
         <div class="flex items-center mb-4">
           <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-            <i class="fas fa-code text-white"></i>
+            <i class="fas fa-code text-white theme-icon-white"></i>
           </div>
           <h3 class="text-xl font-semibold">Programming & Development</h3>
         </div>
@@ -321,7 +352,7 @@
        <div class="p-6 rounded-2xl card-hover theme-transition glass-effect" id="skill-card-2">
         <div class="flex items-center mb-4">
           <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-            <i class="fas fa-server text-white"></i>
+            <i class="fas fa-server text-white theme-icon-white"></i>
           </div>
           <h3 class="text-xl font-semibold">ERP & Business Systems</h3>
         </div>
@@ -349,7 +380,7 @@
        <div class="p-6 rounded-2xl card-hover theme-transition glass-effect" id="skill-card-3">
         <div class="flex items-center mb-4">
           <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
-            <i class="fas fa-chart-bar text-white"></i>
+            <i class="fas fa-chart-bar text-white theme-icon-white"></i>
           </div>
           <h3 class="text-xl font-semibold">Data & Analytics</h3>
         </div>
@@ -384,13 +415,12 @@
     <section class="py-20 px-6 theme-transition" id="projects">
      <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-16 gradient-text flex items-center justify-center">
-        <i class="fas fa-project-diagram mr-4"></i>Featured Projects
+        <i class="fas fa-project-diagram mr-4 theme-icon"></i>Featured Projects
       </h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
        <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-1">
-        <div class="h-48 gradient-bg flex items-center justify-center text-6xl relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700"></div>
-          <i class="fas fa-laptop-code text-white relative z-10"></i>
+        <div class="h-48 project-card-bg flex items-center justify-center text-6xl relative overflow-hidden">
+          <i class="fas fa-laptop-code text-white relative z-10 theme-icon-white"></i>
         </div>
         <div class="p-6">
          <h3 class="text-xl font-semibold mb-3">TechWizSoln</h3>
@@ -402,14 +432,13 @@
            <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Power BI</span>
          </div>
          <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
-           <i class="fas fa-external-link-alt mr-2"></i>View Project
+           <i class="fas fa-external-link-alt mr-2 theme-icon-white"></i>View Project
          </button>
         </div>
        </div>
        <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-2">
-        <div class="h-48 gradient-bg flex items-center justify-center text-6xl relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700"></div>
-          <i class="fas fa-cogs text-white relative z-10"></i>
+        <div class="h-48 project-card-bg flex items-center justify-center text-6xl relative overflow-hidden">
+          <i class="fas fa-cogs text-white relative z-10 theme-icon-white"></i>
         </div>
         <div class="p-6">
          <h3 class="text-xl font-semibold mb-3">ERP Implementation</h3>
@@ -421,14 +450,13 @@
            <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">SQL</span>
          </div>
          <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
-           <i class="fas fa-external-link-alt mr-2"></i>View Project
+           <i class="fas fa-external-link-alt mr-2 theme-icon-white"></i>View Project
          </button>
         </div>
        </div>
        <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-3">
-        <div class="h-48 gradient-bg flex items-center justify-center text-6xl relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700"></div>
-          <i class="fas fa-chart-line text-white relative z-10"></i>
+        <div class="h-48 project-card-bg flex items-center justify-center text-6xl relative overflow-hidden">
+          <i class="fas fa-chart-line text-white relative z-10 theme-icon-white"></i>
         </div>
         <div class="p-6">
          <h3 class="text-xl font-semibold mb-3">Data Automation Platform</h3>
@@ -440,7 +468,7 @@
            <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Excel VBA</span>
          </div>
          <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
-           <i class="fas fa-external-link-alt mr-2"></i>View Project
+           <i class="fas fa-external-link-alt mr-2 theme-icon-white"></i>View Project
          </button>
         </div>
        </div>
@@ -454,41 +482,41 @@
     <section class="py-20 px-6 theme-transition" id="contact">
      <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-4xl font-bold mb-8 gradient-text flex items-center justify-center">
-        <i class="fas fa-envelope mr-4"></i>Contact Us On
+        <i class="fas fa-envelope mr-4 theme-icon"></i>Contact Us On
       </h2>
       <p class="text-xl mb-12 opacity-80">Let's discuss your next project or collaboration opportunity.</p>
       <div class="grid md:grid-cols-4 gap-6 mb-12">
        <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-1">
         <div class="text-4xl mb-4 gradient-text">
-         <i class="fas fa-envelope"></i>
+         <i class="fas fa-envelope theme-icon"></i>
         </div>
         <h3 class="text-lg font-semibold mb-2">Email</h3>
         <p class="opacity-80 text-sm">Brianairb200@gmail.com</p>
        </div>
        <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-2">
         <div class="text-4xl mb-4 gradient-text">
-         <i class="fas fa-phone"></i>
+         <i class="fas fa-phone theme-icon"></i>
         </div>
         <h3 class="text-lg font-semibold mb-2">Phone</h3>
-        <p class="opacity-80 text-sm">+254 0</p>
+        <p class="opacity-80 text-sm">+254 724 443 940</p>
        </div>
        <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-3">
         <div class="text-4xl mb-4 gradient-text">
-         <i class="fab fa-linkedin"></i>
+         <i class="fab fa-linkedin theme-icon"></i>
         </div>
         <h3 class="text-lg font-semibold mb-2">LinkedIn</h3>
         <p class="opacity-80 text-sm">/in/brian-onsare</p>
        </div>
        <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-4">
         <div class="text-4xl mb-4 gradient-text">
-         <i class="fab fa-github"></i>
+         <i class="fab fa-github theme-icon"></i>
         </div>
         <h3 class="text-lg font-semibold mb-2">GitHub</h3>
         <p class="opacity-80 text-sm">github.com/BURA-1</p>
        </div>
       </div>
       <button class="px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 theme-transition gradient-bg text-white flex items-center justify-center mx-auto" id="contact-cta">
-        <i class="fas fa-paper-plane mr-2"></i>Start a Conversation
+        <i class="fas fa-paper-plane mr-2 theme-icon-white"></i>Start a Conversation
       </button>
      </div>
     </section>
@@ -576,30 +604,39 @@
       const themeDropdown = document.getElementById('theme-selector');
       themeDropdown.value = themeName;
 
-      // Update navigation icons
-      updateNavigationIcons(theme);
+      // Update all icons
+      updateAllIcons(theme);
     }
 
-    // Function to update navigation icons with theme colors
-    function updateNavigationIcons(theme) {
-      const navIcons = document.querySelectorAll('nav a i');
-      navIcons.forEach(icon => {
+    // Function to update all icons with theme colors
+    function updateAllIcons(theme) {
+      // Update theme-icon classes (accent color)
+      const themeIcons = document.querySelectorAll('.theme-icon');
+      themeIcons.forEach(icon => {
         icon.style.color = theme.accent_color;
       });
-    }
 
-    // Function to update status dots
-    function updateStatusDots(theme) {
+      // Update theme-icon-secondary classes (secondary color)
+      const themeIconsSecondary = document.querySelectorAll('.theme-icon-secondary');
+      themeIconsSecondary.forEach(icon => {
+        icon.style.color = theme.secondary_color;
+      });
+
+      // Update theme-icon-white classes (white - for gradient backgrounds)
+      const themeIconsWhite = document.querySelectorAll('.theme-icon-white');
+      themeIconsWhite.forEach(icon => {
+        icon.style.color = '#ffffff';
+      });
+
+      // Update status dots
       const statusDots = document.querySelectorAll('.status-dot');
       if (statusDots.length >= 3) {
         statusDots[0].style.backgroundColor = theme.accent_color;
         statusDots[1].style.backgroundColor = theme.secondary_color;
         statusDots[2].style.backgroundColor = theme.accent_color;
       }
-    }
 
-    // Function to update scroll indicator
-    function updateScrollIndicator(theme) {
+      // Update scroll indicator
       const scrollText = document.querySelector('.scroll-indicator + .flex span');
       if (scrollText) {
         scrollText.style.color = theme.accent_color;
@@ -688,4 +725,3 @@
   </script>
 </body>
 </html>
-
