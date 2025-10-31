@@ -1,551 +1,690 @@
 <!doctype html>
 <html lang="en">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Software Engineer Portfolio</title>
-  <script src="/_sdk/element_sdk.js"></script>
+  <title>Brian Onsare | Software Engineer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-        body {
-            box-sizing: border-box;
-        }
-        
-        .theme-transition {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .skill-bar {
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .skill-progress {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 2s ease-in-out;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        .theme-button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .theme-button:hover {
-            transform: scale(1.1);
-            border-color: var(--accent-color);
-        }
-        
-        .theme-button.active {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px var(--accent-color);
-        }
-    </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="theme-transition">
-  <header class="fixed top-0 w-full z-50 backdrop-blur-md border-b theme-transition" id="header">
+    /* Define CSS custom properties */
+    :root {
+      --bg-color: #0f0f1a;
+      --surface-color: #1a1a2e;
+      --text-color: #e2e8f0;
+      --accent-color: #6366f1;
+      --secondary-color: #8b5cf6;
+    }
+
+    body {
+      box-sizing: border-box;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .theme-transition {
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--surface-color);
+      border: 1px solid;
+      border-color: rgba(var(--accent-color-rgb), 0.1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .skill-bar {
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      background-color: rgba(var(--accent-color-rgb), 0.1);
+    }
+    
+    .skill-progress {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 2s ease-in-out;
+      background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .theme-dropdown {
+      background-color: var(--surface-color);
+      border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-dropdown:hover {
+      border-color: var(--accent-color);
+    }
+
+    .theme-dropdown option {
+      background-color: var(--surface-color);
+      color: var(--text-color);
+    }
+
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% { transform: translate(0, 0px); }
+      50% { transform: translate(0, -15px); }
+      100% { transform: translate(0, 0px); }
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+    }
+
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(var(--accent-color-rgb), 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(var(--accent-color-rgb), 0); }
+      100% { box-shadow: 0 0 0 0 rgba(var(--accent-color-rgb), 0); }
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      margin: 40px 0;
+    }
+
+    /* Status indicator dots */
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot:nth-child(2) {
+      animation-delay: 0.2s;
+      background-color: var(--secondary-color);
+    }
+
+    .status-dot:nth-child(3) {
+      animation-delay: 0.4s;
+      background-color: var(--accent-color);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      border-color: var(--accent-color);
+    }
+
+    .scroll-indicator-dot {
+      background-color: var(--accent-color);
+    }
+
+    /* Contact button border */
+    .contact-btn {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .contact-btn:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+  </style>
+</head>
+<body class="theme-transition">
+  <header class="fixed top-0 w-full z-50 backdrop-blur-md border-b theme-transition glass-effect" id="header">
    <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="text-2xl font-bold gradient-text" id="nav-name">
-     Brian Onsare
+    <div class="text-2xl font-bold gradient-text flex items-center" id="nav-name">
+      <i class="fas fa-code mr-2"></i>Brian Onsare
     </div>
     <div class="flex items-center space-x-6">
-     <div class="hidden md:flex space-x-6"><a href="#about" class="hover:text-opacity-80 transition-colors theme-transition" id="nav-about">About</a> <a href="#skills" class="hover:text-opacity-80 transition-colors theme-transition" id="nav-skills">Skills</a> <a href="#projects" class="hover:text-opacity-80 transition-colors theme-transition" id="nav-projects">Projects</a> <a href="#contact" class="hover:text-opacity-80 transition-colors theme-transition" id="nav-contact">Contact</a>
+     <div class="hidden md:flex space-x-6">
+       <a href="#about" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-about">
+         <i class="fas fa-user mr-2" style="color: var(--accent-color);"></i>About
+       </a>
+       <a href="#skills" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-skills">
+         <i class="fas fa-cog mr-2" style="color: var(--accent-color);"></i>Skills
+       </a>
+       <a href="#projects" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-projects">
+         <i class="fas fa-project-diagram mr-2" style="color: var(--accent-color);"></i>Projects
+       </a>
+       <a href="#contact" class="hover:text-opacity-80 transition-colors theme-transition flex items-center" id="nav-contact">
+         <i class="fas fa-envelope mr-2" style="color: var(--accent-color);"></i>Contact
+       </a>
      </div>
-     <div class="flex space-x-2" id="theme-selector">
-      <div class="theme-button" data-theme="modern" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-      <div class="theme-button" data-theme="dark" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);"></div>
-      <div class="theme-button" data-theme="nature" style="background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);"></div>
-      <div class="theme-button" data-theme="sunset" style="background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);"></div>
+     <div class="relative">
+       <select class="theme-dropdown" id="theme-selector">
+         <option value="normal">Normal</option>
+         <option value="dark">Dark</option>
+         <option value="nature">Nature</option>
+         <option value="sunset">Sunset</option>
+         <option value="ocean">Ocean</option>
+       </select>
      </div>
     </div>
    </nav>
   </header>
-  <main><!-- Hero Section -->
-   <section class="min-h-screen flex items-center justify-center px-6 theme-transition" id="hero-section">
-    <div class="max-w-4xl mx-auto text-center">
-     <div class="animate-fade-in">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text" id="hero-name">Brian Onsare</h1>
-      <h2 class="text-2xl md:text-3xl mb-8 theme-transition" id="hero-title">Software Engineer</h2>
-      <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-80 theme-transition" id="hero-bio">Passionate about creating elegant solutions to complex problems. Specializing in full-stack development with a focus on scalable architectures and user experience.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center"><button class="px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 theme-transition" id="cta-projects"> My Projects </button>
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 theme-transition relative overflow-hidden" id="hero-section">
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-32 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-32 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
       </div>
-     </div>
-    </div>
-   </section><!-- About Section -->
-   <section class="py-20 px-6 theme-transition" id="about">
-    <div class="max-w-6xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-16 gradient-text">About Me</h2>
-     <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-       <p class="text-lg mb-6 opacity-90 theme-transition">With over 3 years of experience in software development, I've had the privilege of working with startups and established companies, building everything from mobile apps to distributed systems.</p>
-       <p class="text-lg mb-6 opacity-90 theme-transition">I believe in writing clean, maintainable code and am passionate about mentoring junior developers and contributing to open-source projects.</p>
-       <div class="flex flex-wrap gap-3"><span class="px-4 py-2 rounded-full text-sm font-medium theme-transition" id="tag-1">Problem Solver</span> <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition" id="tag-2">Team Player</span> <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition" id="tag-3">Continuous Learner</span>
-       </div>
-      </div>
-      <div class="flex justify-center">
-       <div class="w-80 h-80 rounded-full theme-transition flex items-center justify-center text-8xl" id="avatar">
-        👨‍💻
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Skills Section -->
-   <section class="py-20 px-6 theme-transition" id="skills">
-    <div class="max-w-6xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-16 gradient-text" id="skills-title">Technical Skills</h2>
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="p-6 rounded-2xl card-hover theme-transition" id="skill-card-1">
-       <h3 class="text-xl font-semibold mb-4">Frontend Development</h3>
-       <div class="space-y-4">
-        <div>
-         <div class="flex justify-between mb-2"><span>React/Next.js</span> <span>95%</span>
-         </div>
-         <div class="skill-bar theme-transition">
-          <div class="skill-progress" style="width: 95%"></div>
-         </div>
+      
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="animate-fade-in">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full gradient-bg mb-8 pulse-animation">
+            <i class="fas fa-laptop-code text-white text-2xl"></i>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text" id="hero-name">Brian Onsare</h1>
+          <h2 class="text-2xl md:text-3xl mb-8 theme-transition flex items-center justify-center" id="hero-title">
+            <span class="mr-3">Software Engineer</span>
+            <span class="inline-flex space-x-1">
+              <span class="status-dot"></span>
+              <span class="status-dot"></span>
+              <span class="status-dot"></span>
+            </span>
+          </h2>
+          <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-80 theme-transition" id="hero-bio">Crafting robust, intelligent, and scalable solutions at the intersection of code and business logic. Specializing in backend development, data automation, and full-stack engineering.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button class="px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 theme-transition gradient-bg text-white flex items-center justify-center" id="cta-projects">
+              <i class="fas fa-rocket mr-2"></i>View My Work
+            </button>
+            <button class="px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 theme-transition contact-btn border flex items-center justify-center" id="cta-contact">
+              <i class="fas fa-paper-plane mr-2"></i>Contact Us On
+            </button>
+          </div>
         </div>
-        <div>
-         <div class="flex justify-between mb-2"><span>TypeScript</span> <span>90%</span>
-         </div>
-         <div class="skill-bar theme-transition">
-          <div class="skill-progress" style="width: 90%"></div>
-         </div>
-        </div>
-       </div>
       </div>
-      <div class="p-6 rounded-2xl card-hover theme-transition" id="skill-card-2">
-       <h3 class="text-xl font-semibold mb-4">Backend Development</h3>
-       <div class="space-y-4">
-        <div>
-         <div class="flex justify-between mb-2"><span>Node.js/Python</span> <span>92%</span>
-         </div>
-         <div class="skill-bar theme-transition">
-          <div class="skill-progress" style="width: 92%"></div>
-         </div>
+      
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        <div class="flex flex-col items-center">
+          <span class="text-sm opacity-70 mb-2" style="color: var(--accent-color);">Scroll to explore</span>
+          <div class="w-6 h-10 scroll-indicator border-2 rounded-full flex justify-center">
+            <div class="w-1 h-3 scroll-indicator-dot rounded-full mt-2 floating"></div>
+          </div>
         </div>
-        <div>
-         <div class="flex justify-between mb-2"><span>Database Design</span> <span>88%</span>
-         </div>
-         <div class="skill-bar theme-transition">
-          <div class="skill-progress" style="width: 88%"></div>
-         </div>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-20 px-6 theme-transition" id="about">
+     <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16 gradient-text flex items-center justify-center">
+        <i class="fas fa-user mr-4"></i>About Me
+      </h2>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+       <div>
+        <p class="text-lg mb-6 opacity-90 theme-transition">Results-driven Software Engineer with over two years of experience in developing automation scripts, managing software implementations, and providing technical solutions. My passion lies in building backend systems and data pipelines that drive efficiency and insight.</p>
+        <p class="text-lg mb-6 opacity-90 theme-transition">I combine strong technical expertise with business acumen to bridge the gap between technology and end-users, delivering tailored software solutions that address real-world challenges.</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition glass-effect flex items-center">
+            <i class="fas fa-code mr-2" style="color: var(--accent-color);"></i>Backend Development
+          </span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition glass-effect flex items-center">
+            <i class="fas fa-database mr-2" style="color: var(--accent-color);"></i>Data Automation
+          </span>
+          <span class="px-4 py-2 rounded-full text-sm font-medium theme-transition glass-effect flex items-center">
+            <i class="fas fa-cogs mr-2" style="color: var(--accent-color);"></i>ERP Implementation
+          </span>
         </div>
        </div>
-      </div>
-      <div class="p-6 rounded-2xl card-hover theme-transition" id="skill-card-3">
-       <h3 class="text-xl font-semibold mb-4">DevOps &amp; Cloud</h3>
-       <div class="space-y-4">
-        <div>
-         <div class="flex justify-between mb-2"><span>AWS/Docker</span> <span>85%</span>
-         </div>
-         <div class="skill-bar theme-transition">
-          <div class="skill-progress" style="width: 85%"></div>
-         </div>
-        </div>
-        <div>
-         <div class="flex justify-between mb-2"><span>CI/CD</span> <span>80%</span>
-         </div>
-         <div class="skill-bar theme-transition">
-          <div class="skill-progress" style="width: 80%"></div>
-         </div>
+       <div class="flex justify-center">
+        <div class="w-80 h-80 rounded-2xl theme-transition flex items-center justify-center text-8xl gradient-bg relative overflow-hidden" id="avatar">
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 opacity-90"></div>
+          <i class="fas fa-laptop-code text-white relative z-10"></i>
         </div>
        </div>
       </div>
      </div>
-    </div>
-   </section><!-- Projects Section -->
-   <section class="py-20 px-6 theme-transition" id="projects">
-    <div class="max-w-6xl mx-auto">
-     <h2 class="text-4xl font-bold text-center mb-16 gradient-text" id="projects-title">Featured Projects</h2>
-     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="rounded-2xl overflow-hidden card-hover theme-transition" id="project-card-1">
-       <div class="h-48 flex items-center justify-center text-6xl">
-        🚀
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold mb-3">E-Commerce Platform</h3>
-        <p class="opacity-80 mb-4">Full-stack e-commerce solution with real-time inventory management and payment processing.</p>
-        <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 rounded-full text-xs theme-transition">React</span> <span class="px-3 py-1 rounded-full text-xs theme-transition">Node.js</span> <span class="px-3 py-1 rounded-full text-xs theme-transition">MongoDB</span>
-        </div><button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition">View Project</button>
-       </div>
-      </div>
-      <div class="rounded-2xl overflow-hidden card-hover theme-transition" id="project-card-2">
-       <div class="h-48 flex items-center justify-center text-6xl">
-        📱
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold mb-3">Mobile Task Manager</h3>
-        <p class="opacity-80 mb-4">Cross-platform mobile app for team collaboration and project management with offline sync.</p>
-        <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 rounded-full text-xs theme-transition">React Native</span> <span class="px-3 py-1 rounded-full text-xs theme-transition">Firebase</span> <span class="px-3 py-1 rounded-full text-xs theme-transition">Redux</span>
-        </div><button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition">View Project</button>
-       </div>
-      </div>
-      <div class="rounded-2xl overflow-hidden card-hover theme-transition" id="project-card-3">
-       <div class="h-48 flex items-center justify-center text-6xl">
-        🤖
-       </div>
-       <div class="p-6">
-        <h3 class="text-xl font-semibold mb-3">AI Analytics Dashboard</h3>
-        <p class="opacity-80 mb-4">Machine learning powered analytics platform with real-time data visualization and insights.</p>
-        <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 rounded-full text-xs theme-transition">Python</span> <span class="px-3 py-1 rounded-full text-xs theme-transition">TensorFlow</span> <span class="px-3 py-1 rounded-full text-xs theme-transition">D3.js</span>
-        </div><button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition">View Project</button>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Contact Section -->
-   <section class="py-20 px-6 theme-transition" id="contact">
-    <div class="max-w-4xl mx-auto text-center">
-     <h2 class="text-4xl font-bold mb-8 gradient-text" id="contact-title">Get In Touch</h2>
-     <p class="text-xl mb-12 opacity-80">Let's discuss your next project or collaboration opportunity.</p>
-     <div class="grid md:grid-cols-3 gap-8 mb-12">
-      <div class="p-6 rounded-2xl theme-transition" id="contact-card-1">
-       <div class="text-4xl mb-4">
-        📧
-       </div>
-       <h3 class="text-lg font-semibold mb-2">Email</h3>
-       <p class="opacity-80">nyakababrian@gmail.com</p>
-      </div>
-      <div class="p-6 rounded-2xl theme-transition" id="contact-card-2">
-       <div class="text-4xl mb-4">
-        💼
-       </div>
-       <h3 class="text-lg font-semibold mb-2">LinkedIn</h3>
-       <p class="opacity-80">www.linkedin.com/in/brian-onsare-a0b813203
+    </section>
 
-</p>
-      </div>
-      <div class="p-6 rounded-2xl theme-transition" id="contact-card-3">
-       <div class="text-4xl mb-4">
-        🐙
+    <div class="section-divider max-w-4xl mx-auto"></div>
+    
+    <!-- Skills Section -->
+    <section class="py-20 px-6 theme-transition" id="skills">
+     <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16 gradient-text flex items-center justify-center">
+        <i class="fas fa-cogs mr-4"></i>Technical Skills
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+       <div class="p-6 rounded-2xl card-hover theme-transition glass-effect" id="skill-card-1">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+            <i class="fas fa-code text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Programming & Development</h3>
+        </div>
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span>Python</span> <span>92%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 92%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span>SQL</span> <span>88%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 88%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span>HTML/CSS</span> <span>85%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 85%"></div>
+          </div>
+         </div>
+        </div>
        </div>
-       <h3 class="text-lg font-semibold mb-2">GitHub</h3>
-       <p class="opacity-80">https://github.com/BURA-1</p>
+       <div class="p-6 rounded-2xl card-hover theme-transition glass-effect" id="skill-card-2">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+            <i class="fas fa-server text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold">ERP & Business Systems</h3>
+        </div>
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span>Odoo</span> <span>90%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 90%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span>SAP Business One</span> <span>85%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 85%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span>CRM Systems</span> <span>88%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 88%"></div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="p-6 rounded-2xl card-hover theme-transition glass-effect" id="skill-card-3">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 rounded-lg gradient-bg flex items-center justify-center mr-4">
+            <i class="fas fa-chart-bar text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Data & Analytics</h3>
+        </div>
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span>Power BI</span> <span>85%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 85%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span>Excel Automation</span> <span>90%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 90%"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span>Data Analysis</span> <span>87%</span></div>
+          <div class="skill-bar theme-transition">
+           <div class="skill-progress" style="width: 87%"></div>
+          </div>
+         </div>
+        </div>
+       </div>
       </div>
-     </div><button class="px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 theme-transition" id="contact-cta"> Start a Conversation </button>
-    </div>
-   </section>
+     </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+    
+    <!-- Projects Section -->
+    <section class="py-20 px-6 theme-transition" id="projects">
+     <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16 gradient-text flex items-center justify-center">
+        <i class="fas fa-project-diagram mr-4"></i>Featured Projects
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+       <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-1">
+        <div class="h-48 gradient-bg flex items-center justify-center text-6xl relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700"></div>
+          <i class="fas fa-laptop-code text-white relative z-10"></i>
+        </div>
+        <div class="p-6">
+         <h3 class="text-xl font-semibold mb-3">TechWizSoln</h3>
+         <p class="opacity-80 mb-4">Your comprehensive technology partner, engineering cutting-edge digital solutions for businesses and individuals. We architect, automate, and innovate—delivering everything from custom software and data intelligence platforms to seamless IT infrastructure.</p>
+         <div class="flex flex-wrap gap-2 mb-4">
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Python</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Odoo</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">SQL</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Power BI</span>
+         </div>
+         <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
+           <i class="fas fa-external-link-alt mr-2"></i>View Project
+         </button>
+        </div>
+       </div>
+       <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-2">
+        <div class="h-48 gradient-bg flex items-center justify-center text-6xl relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700"></div>
+          <i class="fas fa-cogs text-white relative z-10"></i>
+        </div>
+        <div class="p-6">
+         <h3 class="text-xl font-semibold mb-3">ERP Implementation</h3>
+         <p class="opacity-80 mb-4">Custom Odoo and SAP Business One implementations for SMEs, translating business requirements into tailored software solutions with modules for CRM, Sales, and Inventory management.</p>
+         <div class="flex flex-wrap gap-2 mb-4">
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Odoo</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">SAP B1</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Python</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">SQL</span>
+         </div>
+         <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
+           <i class="fas fa-external-link-alt mr-2"></i>View Project
+         </button>
+        </div>
+       </div>
+       <div class="rounded-2xl overflow-hidden card-hover theme-transition glass-effect" id="project-card-3">
+        <div class="h-48 gradient-bg flex items-center justify-center text-6xl relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-700"></div>
+          <i class="fas fa-chart-line text-white relative z-10"></i>
+        </div>
+        <div class="p-6">
+         <h3 class="text-xl font-semibold mb-3">Data Automation Platform</h3>
+         <p class="opacity-80 mb-4">Python-powered automation platform for business intelligence, streamlining reporting processes and enabling data-driven decision-making through custom scripts and Power BI integration.</p>
+         <div class="flex flex-wrap gap-2 mb-4">
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Python</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Power BI</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">SQL</span>
+           <span class="px-3 py-1 rounded-full text-xs theme-transition glass-effect">Excel VBA</span>
+         </div>
+         <button class="w-full py-2 rounded-lg font-medium transition-colors theme-transition gradient-bg text-white flex items-center justify-center">
+           <i class="fas fa-external-link-alt mr-2"></i>View Project
+         </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+    
+    <!-- Contact Section -->
+    <section class="py-20 px-6 theme-transition" id="contact">
+     <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8 gradient-text flex items-center justify-center">
+        <i class="fas fa-envelope mr-4"></i>Contact Us On
+      </h2>
+      <p class="text-xl mb-12 opacity-80">Let's discuss your next project or collaboration opportunity.</p>
+      <div class="grid md:grid-cols-4 gap-6 mb-12">
+       <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-1">
+        <div class="text-4xl mb-4 gradient-text">
+         <i class="fas fa-envelope"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Email</h3>
+        <p class="opacity-80 text-sm">Brianairb200@gmail.com</p>
+       </div>
+       <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-2">
+        <div class="text-4xl mb-4 gradient-text">
+         <i class="fas fa-phone"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Phone</h3>
+        <p class="opacity-80 text-sm">+254 724 443 940</p>
+       </div>
+       <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-3">
+        <div class="text-4xl mb-4 gradient-text">
+         <i class="fab fa-linkedin"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">LinkedIn</h3>
+        <p class="opacity-80 text-sm">/in/brian-onsare</p>
+       </div>
+       <div class="p-6 rounded-2xl theme-transition glass-effect card-hover" id="contact-card-4">
+        <div class="text-4xl mb-4 gradient-text">
+         <i class="fab fa-github"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">GitHub</h3>
+        <p class="opacity-80 text-sm">github.com/BURA-1</p>
+       </div>
+      </div>
+      <button class="px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 theme-transition gradient-bg text-white flex items-center justify-center mx-auto" id="contact-cta">
+        <i class="fas fa-paper-plane mr-2"></i>Start a Conversation
+      </button>
+     </div>
+    </section>
   </main>
+  
   <footer class="py-8 px-6 text-center opacity-60 theme-transition" id="footer">
-   <p>© 2025 Brian. Crafted with passion and code.</p>
+   <p>© 2025 Brian Onsare. Crafted with passion and code.</p>
   </footer>
+  
   <script>
-        // Theme configurations
-        const themes = {
-            modern: {
-                background_color: '#f8fafc',
-                surface_color: '#ffffff',
-                text_color: '#1e293b',
-                accent_color: '#667eea',
-                secondary_color: '#764ba2'
-            },
-            dark: {
-                background_color: '#0f172a',
-                surface_color: '#1e293b',
-                text_color: '#f1f5f9',
-                accent_color: '#3b82f6',
-                secondary_color: '#8b5cf6'
-            },
-            nature: {
-                background_color: '#f0f9f0',
-                surface_color: '#ffffff',
-                text_color: '#1a4d1a',
-                accent_color: '#56ab2f',
-                secondary_color: '#a8e6cf'
-            },
-            sunset: {
-                background_color: '#fff8f0',
-                surface_color: '#ffffff',
-                text_color: '#8b4513',
-                accent_color: '#ff7e5f',
-                secondary_color: '#feb47b'
-            }
-        };
+    // Theme configurations
+    const themes = {
+      normal: {
+        background_color: '#0f0f1a',
+        surface_color: '#1a1a2e',
+        text_color: '#e2e8f0',
+        accent_color: '#6366f1',
+        secondary_color: '#8b5cf6'
+      },
+      dark: {
+        background_color: '#0f172a',
+        surface_color: '#1e293b',
+        text_color: '#f1f5f9',
+        accent_color: '#3b82f6',
+        secondary_color: '#8b5cf6'
+      },
+      nature: {
+        background_color: '#0f1f15',
+        surface_color: '#1a3224',
+        text_color: '#d1fae5',
+        accent_color: '#10b981',
+        secondary_color: '#34d399'
+      },
+      sunset: {
+        background_color: '#1f0f0f',
+        surface_color: '#321a1a',
+        text_color: '#fecaca',
+        accent_color: '#ef4444',
+        secondary_color: '#f97316'
+      },
+      ocean: {
+        background_color: '#0f1a1f',
+        surface_color: '#1a2d32',
+        text_color: '#bae6fd',
+        accent_color: '#06b6d4',
+        secondary_color: '#0ea5e9'
+      }
+    };
 
-        // Default configuration
-        const defaultConfig = {
-            engineer_name: 'Alex Chen',
-            job_title: 'Senior Software Engineer',
-            bio_text: 'Passionate about creating elegant solutions to complex problems. Specializing in full-stack development with a focus on scalable architectures and user experience.',
-            skills_heading: 'Technical Skills',
-            projects_heading: 'Featured Projects',
-            contact_heading: 'Get In Touch',
-            current_theme: 'modern',
-            background_color: '#f8fafc',
-            surface_color: '#ffffff',
-            text_color: '#1e293b',
-            accent_color: '#667eea',
-            secondary_color: '#764ba2'
-        };
+    // Helper function to convert hex to RGB
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    }
 
-        let config = { ...defaultConfig };
+    // Apply theme function
+    function applyTheme(themeName) {
+      const theme = themes[themeName];
+      if (!theme) return;
 
-        // Apply theme function
-        function applyTheme(themeName) {
-            const theme = themes[themeName];
-            if (!theme) return;
+      // Update CSS custom properties
+      document.documentElement.style.setProperty('--bg-color', theme.background_color);
+      document.documentElement.style.setProperty('--surface-color', theme.surface_color);
+      document.documentElement.style.setProperty('--text-color', theme.text_color);
+      document.documentElement.style.setProperty('--accent-color', theme.accent_color);
+      document.documentElement.style.setProperty('--secondary-color', theme.secondary_color);
+      
+      // Convert hex colors to RGB for rgba usage
+      const accentRgb = hexToRgb(theme.accent_color);
+      const surfaceRgb = hexToRgb(theme.surface_color);
+      
+      if (accentRgb) {
+        document.documentElement.style.setProperty('--accent-color-rgb', `${accentRgb.r}, ${accentRgb.g}, ${accentRgb.b}`);
+      }
+      
+      if (surfaceRgb) {
+        document.documentElement.style.setProperty('--surface-color-rgb', `${surfaceRgb.r}, ${surfaceRgb.g}, ${surfaceRgb.b}`);
+      }
 
-            config.current_theme = themeName;
-            config.background_color = theme.background_color;
-            config.surface_color = theme.surface_color;
-            config.text_color = theme.text_color;
-            config.accent_color = theme.accent_color;
-            config.secondary_color = theme.secondary_color;
+      // Update theme dropdown
+      const themeDropdown = document.getElementById('theme-selector');
+      themeDropdown.value = themeName;
 
-            // Update CSS custom properties
-            document.documentElement.style.setProperty('--bg-color', theme.background_color);
-            document.documentElement.style.setProperty('--surface-color', theme.surface_color);
-            document.documentElement.style.setProperty('--text-color', theme.text_color);
-            document.documentElement.style.setProperty('--accent-color', theme.accent_color);
-            document.documentElement.style.setProperty('--secondary-color', theme.secondary_color);
+      // Update navigation icons
+      updateNavigationIcons(theme);
+    }
 
-            // Apply styles to elements
-            document.body.style.backgroundColor = theme.background_color;
-            document.body.style.color = theme.text_color;
+    // Function to update navigation icons with theme colors
+    function updateNavigationIcons(theme) {
+      const navIcons = document.querySelectorAll('nav a i');
+      navIcons.forEach(icon => {
+        icon.style.color = theme.accent_color;
+      });
+    }
 
-            // Update header
-            const header = document.getElementById('header');
-            header.style.backgroundColor = theme.surface_color + 'CC';
-            header.style.borderBottomColor = theme.accent_color + '33';
+    // Function to update status dots
+    function updateStatusDots(theme) {
+      const statusDots = document.querySelectorAll('.status-dot');
+      if (statusDots.length >= 3) {
+        statusDots[0].style.backgroundColor = theme.accent_color;
+        statusDots[1].style.backgroundColor = theme.secondary_color;
+        statusDots[2].style.backgroundColor = theme.accent_color;
+      }
+    }
 
-            // Update hero section
-            const heroSection = document.getElementById('hero-section');
-            heroSection.style.backgroundColor = theme.background_color;
+    // Function to update scroll indicator
+    function updateScrollIndicator(theme) {
+      const scrollText = document.querySelector('.scroll-indicator + .flex span');
+      if (scrollText) {
+        scrollText.style.color = theme.accent_color;
+      }
+      
+      const scrollBorder = document.querySelector('.scroll-indicator');
+      if (scrollBorder) {
+        scrollBorder.style.borderColor = theme.accent_color;
+      }
+      
+      const scrollDot = document.querySelector('.scroll-indicator-dot');
+      if (scrollDot) {
+        scrollDot.style.backgroundColor = theme.accent_color;
+      }
+    }
 
-            // Update sections
-            const sections = ['about', 'skills', 'projects', 'contact'];
-            sections.forEach((sectionId, index) => {
-                const section = document.getElementById(sectionId);
-                section.style.backgroundColor = index % 2 === 0 ? theme.background_color : theme.surface_color;
-            });
+    // Theme selector event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeDropdown = document.getElementById('theme-selector');
+      themeDropdown.addEventListener('change', function() {
+        const themeName = this.value;
+        applyTheme(themeName);
+      });
 
-            // Update cards
-            const cards = document.querySelectorAll('[id*="card"], [id*="skill-card"], [id*="project-card"], [id*="contact-card"]');
-            cards.forEach(card => {
-                card.style.backgroundColor = theme.surface_color;
-                card.style.border = `1px solid ${theme.accent_color}22`;
-            });
+      // Apply default theme
+      applyTheme('normal');
 
-            // Update buttons
-            const primaryButtons = document.querySelectorAll('#cta-projects, #contact-cta');
-            primaryButtons.forEach(btn => {
-                btn.style.backgroundColor = theme.accent_color;
-                btn.style.color = '#ffffff';
-            });
-
-            const secondaryButtons = document.querySelectorAll('#cta-contact');
-            secondaryButtons.forEach(btn => {
-                btn.style.borderColor = theme.accent_color;
-                btn.style.color = theme.accent_color;
-                btn.style.backgroundColor = 'transparent';
-            });
-
-            // Update tags and skill bars
-            const tags = document.querySelectorAll('[id*="tag-"]');
-            tags.forEach(tag => {
-                tag.style.backgroundColor = theme.accent_color + '22';
-                tag.style.color = theme.accent_color;
-            });
-
-            // Update avatar
-            const avatar = document.getElementById('avatar');
-            avatar.style.backgroundColor = theme.accent_color + '11';
-
-            // Update theme selector
-            const themeButtons = document.querySelectorAll('.theme-button');
-            themeButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.theme === themeName) {
-                    btn.classList.add('active');
-                }
-            });
-
-            if (window.elementSdk) {
-                window.elementSdk.setConfig({
-                    current_theme: themeName,
-                    background_color: theme.background_color,
-                    surface_color: theme.surface_color,
-                    text_color: theme.text_color,
-                    accent_color: theme.accent_color,
-                    secondary_color: theme.secondary_color
-                });
-            }
-        }
-
-        // Theme selector event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeButtons = document.querySelectorAll('.theme-button');
-            themeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const themeName = this.dataset.theme;
-                    applyTheme(themeName);
-                });
-            });
-
-            // Apply default theme
-            applyTheme('modern');
-
-            // Smooth scrolling for navigation
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-
-            // CTA button actions
-            document.getElementById('cta-projects').addEventListener('click', function() {
-                document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-            });
-
-            document.getElementById('cta-contact').addEventListener('click', function() {
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            });
-
-            document.getElementById('contact-cta').addEventListener('click', function() {
-                // Create a simple contact modal effect
-                this.textContent = 'Message Sent! ✨';
-                this.style.backgroundColor = '#10b981';
-                setTimeout(() => {
-                    this.textContent = 'Start a Conversation';
-                    applyTheme(config.current_theme); // Restore original button styling
-                }, 2000);
-            });
+      // Smooth scrolling for navigation
+      const navLinks = document.querySelectorAll('nav a[href^="#"]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
         });
+      });
 
-        // Element SDK integration
-        async function onConfigChange(newConfig) {
-            // Update text content
-            document.getElementById('nav-name').textContent = newConfig.engineer_name || defaultConfig.engineer_name;
-            document.getElementById('hero-name').textContent = newConfig.engineer_name || defaultConfig.engineer_name;
-            document.getElementById('hero-title').textContent = newConfig.job_title || defaultConfig.job_title;
-            document.getElementById('hero-bio').textContent = newConfig.bio_text || defaultConfig.bio_text;
-            document.getElementById('skills-title').textContent = newConfig.skills_heading || defaultConfig.skills_heading;
-            document.getElementById('projects-title').textContent = newConfig.projects_heading || defaultConfig.projects_heading;
-            document.getElementById('contact-title').textContent = newConfig.contact_heading || defaultConfig.contact_heading;
+      // CTA button actions
+      document.getElementById('cta-projects').addEventListener('click', function() {
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+      });
 
-            // Apply theme if changed
-            if (newConfig.current_theme && newConfig.current_theme !== config.current_theme) {
-                applyTheme(newConfig.current_theme);
-            }
+      document.getElementById('cta-contact').addEventListener('click', function() {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
 
-            // Update config
-            Object.assign(config, newConfig);
-        }
+      document.getElementById('contact-cta').addEventListener('click', function() {
+        // Create a simple contact modal effect
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
+        this.style.backgroundColor = '#10b981';
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          applyTheme(document.getElementById('theme-selector').value);
+        }, 2000);
+      });
 
-        // Initialize Element SDK
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities: (config) => ({
-                    recolorables: [
-                        {
-                            get: () => config.background_color || defaultConfig.background_color,
-                            set: (value) => {
-                                config.background_color = value;
-                                document.body.style.backgroundColor = value;
-                                window.elementSdk.setConfig({ background_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.surface_color || defaultConfig.surface_color,
-                            set: (value) => {
-                                config.surface_color = value;
-                                const cards = document.querySelectorAll('[id*="card"], [id*="skill-card"], [id*="project-card"], [id*="contact-card"]');
-                                cards.forEach(card => card.style.backgroundColor = value);
-                                window.elementSdk.setConfig({ surface_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.text_color || defaultConfig.text_color,
-                            set: (value) => {
-                                config.text_color = value;
-                                document.body.style.color = value;
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.accent_color || defaultConfig.accent_color,
-                            set: (value) => {
-                                config.accent_color = value;
-                                document.documentElement.style.setProperty('--accent-color', value);
-                                window.elementSdk.setConfig({ accent_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.secondary_color || defaultConfig.secondary_color,
-                            set: (value) => {
-                                config.secondary_color = value;
-                                document.documentElement.style.setProperty('--secondary-color', value);
-                                window.elementSdk.setConfig({ secondary_color: value });
-                            }
-                        }
-                    ],
-                    borderables: [],
-                    fontEditable: undefined,
-                    fontSizeable: undefined
-                }),
-                mapToEditPanelValues: (config) => new Map([
-                    ['engineer_name', config.engineer_name || defaultConfig.engineer_name],
-                    ['job_title', config.job_title || defaultConfig.job_title],
-                    ['bio_text', config.bio_text || defaultConfig.bio_text],
-                    ['skills_heading', config.skills_heading || defaultConfig.skills_heading],
-                    ['projects_heading', config.projects_heading || defaultConfig.projects_heading],
-                    ['contact_heading', config.contact_heading || defaultConfig.contact_heading]
-                ])
+      // Animate skill bars on scroll
+      const observerOptions = {
+        threshold: 0.5
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const skillBars = entry.target.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+              const width = bar.style.width;
+              bar.style.width = '0';
+              setTimeout(() => {
+                bar.style.width = width;
+              }, 300);
             });
-        }
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'995b6368d27f73b1',t:'MTc2MTY2NDUyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+          }
+        });
+      }, observerOptions);
 
+      const skillSections = document.querySelectorAll('#skill-card-1, #skill-card-2, #skill-card-3');
+      skillSections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
 </html>
-
-
